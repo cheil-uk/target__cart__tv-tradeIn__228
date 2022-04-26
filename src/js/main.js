@@ -46,7 +46,7 @@ cheillondon.targetBoilerplate = (function () {
 					console.log('no jquery')
 					_self.doEverythingTimeout();
 				}
-			}, 1500)
+			}, 6000)
 		},
 
 
