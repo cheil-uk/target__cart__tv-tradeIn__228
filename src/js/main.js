@@ -109,7 +109,7 @@ cheillondon.targetBoilerplate = (function () {
                         const tvTradeInContainer = document.createElement('div');
                         tvTradeInContainer.classList.add('tv-trade-in-container');
                         tvTradeInContainer.innerHTML =
-                        `<p>Trade UP : delivery ,collection and recycling of your old Samsung appliance is included for free with the ‘Delivery Only’ option . Please select another if you would like any additional services</p>`;
+                        `<p>Trade Up : delivery ,collection and recycling of your old Samsung appliance is included for free with the ‘Delivery Only’ option . Please select another if you would like any additional services</p>`;
                         cartWrapper.append(tvTradeInContainer);
                     }
                 }
