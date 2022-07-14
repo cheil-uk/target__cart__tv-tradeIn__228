@@ -109,7 +109,7 @@ cheillondon.targetBoilerplate = (function () {
                         const tvTradeInContainer = document.createElement('div');
                         tvTradeInContainer.classList.add('tv-trade-in-container');
                         tvTradeInContainer.innerHTML =
-                        `<p>Trade Up : delivery ,collection and recycling of your old Samsung appliance is included for free with the ‘Delivery Only’ option . Please select another if you would like any additional services</p>`;
+                        `<p><strong>Trade Up</strong> : Delivery ,collection and recycling of your old Samsung appliance is included for free with the ‘Delivery Only’ option . Please select another if you would like any additional services</p>`;
                         cartWrapper.append(tvTradeInContainer);
                     }
                 }
@@ -173,25 +173,23 @@ cheillondon.targetBoilerplate = (function () {
 															const inputText = x.children[0].children[1].innerText
 															addTagging(input,
 															{ "data-omni-type"    : "microsite",
-																			"data-omni"       : `uk:228:cart:tvtradeup:${inputText}`,
 																			"ga-ac"           : "pd buying tool",
 																			"ga-ca"           : "option input"
 															});
 															input.onclick = () => {
-																tagging(input.getAttribute('data-omni'));
+																tagging(input.getAttribute('data-omni-type'));
 															}
 											})
         })
 
 								addTagging(continueBtn,{
 									"data-omni-type"  : "microsite",
-									"data-omni"       : `uk:228:cart:tvtradeup:${continueBtn.innerText}`,
 									"ga-ac"           : "pd buying tool",
 									"ga-ca"           : "option input"
 								})
 
 								continueBtn.onclick = () => {
-										tagging(continueBtn.getAttribute('data-omni'));
+										tagging(continueBtn.getAttribute('data-omni-type'));
 									}
 		},
 
