@@ -40,12 +40,13 @@ cheillondon.targetBoilerplate = (function () {
 					console.log('doEverythingTimeout - jQuery loaded');
 					main.kickoff();
 					// main.tagging();
-					main.trackElementMutations();
+					// main.trackElementMutations();
 					main.appendNewStyle();
+					// main.trackElementMutations();
 
 					$(document).on('change', function() {
 						setTimeout(() => {
-							main.trackElementMutations();
+							main.kickoff();
 						}, 1000)
 					});
 
@@ -114,19 +115,26 @@ cheillondon.targetBoilerplate = (function () {
 							const wrapperMessaging = cartWrapper.querySelector('.service-item__applied-message');
 							const tradeInContainer = cartWrapper.parentElement.querySelector('.cart-item__services');
 							const currentCartSku = cartWrapper.parentElement.querySelector('.cart-item__sku').innerText;
+							const removeBtn = tradeInContainer.querySelector('.action-button')
 							let tradeInName = tradeInContainer.querySelector('.service-item__name')
 							let tradeInMessage = tradeInContainer.querySelector('.service-item__applied-message')
-							// console.log(tradeInName, tradeInMessage);
+							// console.log();
+
+						removeBtn.onclick = (e) => {
+							e.preventDefault()
+							cartWrapper.querySelector('.service-item').style.display = 'none'
+						}
+
 
 							for (const skus in spreadsheetSkus) { // Loop through each sku
 											if (Object.hasOwnProperty.call(spreadsheetSkus, skus)) { // Check if sku is in spreadsheet aka the array above
 											const spreadsheetSkuValue = spreadsheetSkus[skus];
 															if ( currentCartSku === spreadsheetSkuValue ) {
 																			if (wrapperMessaging === null ) {
-																							// cartWrapper.querySelector('.service-item').style.display = 'none'
+																							cartWrapper.querySelector('.service-item').style.display = 'none'
 																							const tradeInContainer = cartWrapper.querySelector('.service-item');
 																							tradeInContainer.querySelector('.service-item__name').innerText = 'Trade-Up';
-																							tradeInContainer.querySelector('.service-item__description').innerText = 'TV Trade-up'
+																							tradeInContainer.querySelector('.service-item__description').innerText = 'DA Trade-up'
 																			} else {
 																							const paragraph = document.createElement('p');
 																							paragraph.innerText = termsandconditions;
@@ -208,6 +216,7 @@ cheillondon.targetBoilerplate = (function () {
 		},
 
 		trackElementMutations: function () {
+
 			const spreadsheetSkus = [
    	"RF23R62E3SR/EU","RF50A5002S9/EU","RF23R62E3B1/EU","RF24R7201B1/EU","RF24R7201SR/EU","RF65A967FS9/EU","RF65A967FB1/EU","RF65A977FB1/EU","RF65A977FSR/EU","RF23BB860EQNEU","RB34A6B2ECS/EU","RB34A6B2ECE/EU","RB34A6B2E22/EU","RB34A6B2E12/EU","RB34A6B2E48/EU","RB38A7B53S9/EU","RB38A7B53B1/EU","RB38A7B6BB1/EU","RL38A776ASR/EU","RB38T633ESA/EU","RB38T602CS9/EU","RB38T602CWW/EU","RB38T605DB1/EU","RL4363SBASL/EU","RL4363SBAB1/EU","RB36R8839SR/EU","RB36R8899SR/EU","RZ32A74A501/EU","RR39A74A301/EU","RZ32A74A5CE/EU","RZ32A74A5CS/EU", "RR39A74A3CE/EU",
 
@@ -235,9 +244,9 @@ cheillondon.targetBoilerplate = (function () {
 																// console.log(mutation.target.parentElement)
 																			mutation.target.parentElement.style.display = 'none'
 															}
-															// else if (mutation.type === 'attributes') {
-															// 				console.log('And element was modified');
-															// }
+															else if (mutation.type === 'attributes' && cartSku.includes(spreadsheetSkus)) {
+																				mutation.target.parentElement.style.display = 'none'
+															}
 											}
 							};
 
